@@ -3,8 +3,8 @@ import asyncio
 from urllib.parse import urljoin
 from aiohttp import web
 from aiogram import Bot, Dispatcher, executor
-from dotenv import load_dotenv
 from aiogram.dispatcher.webhook import get_new_configured_app
+from dotenv import load_dotenv
 
 
 load_dotenv()
