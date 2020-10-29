@@ -1,7 +1,5 @@
 import requests
 import os
-from dotenv import load_dotenv
-
 from main import bot, dp
 from aiogram.types import Message
 from config import question_no_content, channel_id
@@ -15,8 +13,7 @@ async def echo(message: Message):
         if len(content) > 5:
             question = content.replace("#سوال", "")
             id = message["from"]["id"]
-            load_dotenv()
-            COMMENT_BOT_TOKEN = str(os.getenv('COMMENT_BOT_TOKEN'))
+            COMMENT_BOT_TOKEN = os.getenv('COMMENT_BOT_TOKEN')
             base_url = f"https://api.comments.bot/createPost?api_key={COMMENT_BOT_TOKEN}&owner_id={id}&type=text&text={question}"
 
             result = requests.get(base_url)
