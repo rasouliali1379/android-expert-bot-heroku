@@ -5,7 +5,7 @@ from aiogram.utils.executor import start_webhook
 
 BOT_TOKEN = os.getenv("TOKEN")
 WEBHOOK_HOST = "https://android-expert-bot.herokuapp.com/"
-WEBHOOK_PATH = '/webhook/'
+WEBHOOK_PATH = 'webhook/'
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
 WEBAPP_HOST = '0.0.0.0'
