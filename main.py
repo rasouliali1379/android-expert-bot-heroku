@@ -1,15 +1,10 @@
 import os
 import asyncio
 from aiogram import Bot, Dispatcher, executor
-from aiogram.dispatcher.webhook import get_new_configured_app
-from dotenv import load_dotenv
 from aiogram.utils.executor import start_webhook
 
-
-load_dotenv()
-
-BOT_TOKEN = str(os.getenv("TOKEN"))
-WEBHOOK_HOST = str(os.getenv("WEBHOOK_HOST"))
+BOT_TOKEN = os.getenv("TOKEN")
+WEBHOOK_HOST = "https://android-expert-bot.herokuapp.com/"
 WEBHOOK_PATH = '/webhook/'
 WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
 
