@@ -1,29 +1,33 @@
 import os
 import asyncio
-from urllib.parse import urljoin
-from aiohttp import web
 from aiogram import Bot, Dispatcher, executor
 from aiogram.dispatcher.webhook import get_new_configured_app
 from dotenv import load_dotenv
+from aiogram.utils.executor import start_webhook
 
 
 load_dotenv()
 
 BOT_TOKEN = str(os.getenv("TOKEN"))
 WEBHOOK_HOST = str(os.getenv("WEBHOOK_HOST"))
-WEBHOOK_URL_PATH = '/webhook/' + BOT_TOKEN
-WEBHOOK_URL = urljoin(WEBHOOK_HOST, WEBHOOK_URL_PATH)
+WEBHOOK_PATH = '/webhook/'
+WEBHOOK_URL = f"{WEBHOOK_HOST}{WEBHOOK_PATH}"
+
+WEBAPP_HOST = '0.0.0.0'
+WEBAPP_PORT = os.environ.get('PORT')
 
 bot = Bot(BOT_TOKEN, parse_mode="HTML")
 dp = Dispatcher(bot)
 
 async def on_startup(app):
-    await bot.delete_webhook()
     await bot.set_webhook(WEBHOOK_URL)
+
+async def on_shutdown(dp):
+    pass
 
 if __name__ == '__main__':
     from handlers import dp
 
-    app = get_new_configured_app(dispatcher=dp, path=WEBHOOK_URL_PATH)
-    app.on_startup.append(on_startup)
-    web.run_app(app, host='0.0.0.0', port=os.getenv('PORT'))
+    start_webhook(dispatcher=dp, webhook_path=WEBHOOK_PATH,
+                  on_startup=on_startup, on_shutdown=on_shutdown,
+                  host=WEBAPP_HOST, port=WEBAPP_PORT)
