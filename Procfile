@@ -1,1 +1,1 @@
-web: python main.py runserver localhost:5000
+web: python main.py $PORT
