@@ -2,7 +2,7 @@ import requests
 import os
 from main import bot, dp
 from aiogram.types import Message
-from config import question_no_content, channel_id, ask_in_group
+from config import question_no_content, channel_id, ask_in_group, group_id
 from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 
